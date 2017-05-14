@@ -1,10 +1,9 @@
-function process(request) {
+export default (request) => { 
     const base64Codec = require('codec/base64');
     const query = require('codec/query_string');
     const console = require('console');
     const xhr = require('xhr');
     const pubnub = require('pubnub');
-
     /*
       TODO: fill values
     let watsonUsername = 'b738332b-adb1-4bec-b973-c92ff9a8b819';
@@ -71,27 +70,21 @@ function process(request) {
 
                   if (parsedResponse.keywords.length > 0) {
                       
-                      let outputText = "";
+                      let outputText = [];
                       
                       parsedResponse.keywords.forEach(function(e) {
-                          outputText += e.text + " ";
+                          outputText.unshift(e.text);
                       })
                       
-                      pubnub.publish({
-                          channel: request.message.channel,
-                          message: outputText
-                      });
+                      request.message.text = outputText.join(", ");
+                      
                   } else {
                       request.message.text =
                           "Sorry I didn't understand that. " +
                           'Please check what I can do.';
-                      pubnub.publish({
-                          channel: request.message.channel,
-                          message: "what up bro"
-                      });
                   }
 
-                  return request;
+                  return request.ok();
 
               })
               .catch(err => {

@@ -17,6 +17,7 @@ Chat Output
       input.addEventListener('keyup', function(e) {
           if ((e.keyCode || e.charCode) === 13) {
             pubnub.publish({channel : channel,message : {text: input.value}});
+            input.value='';
         }
       });
 })();</script>
