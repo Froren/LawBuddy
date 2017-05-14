@@ -23,18 +23,20 @@ pubnub.addListener({
 	  var lawyerStrings = "";
 	  
 	  for (var website in obj.message.resources.websites) {
-		  websiteString = website + " - " + obj.message.resources.websites[website][0];
+		  websiteStrings = website + " - " + obj.message.resources.websites[website][0];
 	  }
 	  
 	  for (var lawyer in obj.message.resources.lawyers) {
 		  lawyerStrings = lawyer + " - " + obj.message.resources.lawyers[lawyer];
 	  }
 	  
-	  if (obj.message.resources) {
-		message = "I found a relevant website to the topics here: " + websiteString;
+	  if (obj.message.resources && websiteStrings && websiteStrings !== "") {
+		message = "I found a relevant website to the topics here: " + websiteStrings;
 
 		appendBotMessage(message);		
-		
+	  }
+	  
+	  if (obj.message.resources && lawyerStrings && lawyerStrings !== "") {
 		message = "If you wish you contact lawyers in this domain, I suggest: " + lawyerStrings;
 		
 		appendBotMessage(message);	
