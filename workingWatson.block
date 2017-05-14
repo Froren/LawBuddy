@@ -7,13 +7,17 @@ export default (request) => {
     
     const dictionary = {"abuse":["domestic violence"],"abuser":["domestic violence"],"batterer":["domestic violence"],"bruises":["domestic violence"],"burnout":["domestic violence"],"civil protection order":["domestic violence"],"coercion":["domestic violence"],"common partner":["domestic violence"],"compassion fatigue":["domestic violence"],"crime victims compensation program":["domestic violence"],"criminal contempt":["domestic violence"],"dating violence":["domestic violence"],"domestic violence":["domestic violence"],"protection order":["domestic violence"],"emotional abuse":["domestic violence"],"physical abuse":["domestic violence"],"psychological abuse ":["domestic violence"],"sexual abuse":["domestic violence"],"verbal abuse ":["domestic violence"],"emergency shelter":["domestic violence"],"temporary shelter":["domestic violence"],"intimidation":["domestic violence"],"perpetrator":["domestic violence"],"post-traumatic stress disorder ":["domestic violence"],"ptsd":["domestic violence"],"safe housing":["domestic violence"],"threats":["domestic violence"],"victim":["domestic violence"],"domestic abuse ":["domestic violence"],"intimate partner":["domestic violence"],"wounds":["domestic violence"],"bleeding":["domestic violence"],"blood":["domestic violence"],"hurt":["domestic violence"],"harm":["domestic violence"],"scared":["domestic violence"],"fear":["domestic violence"],"terror":["domestic violence"],"admissibility ":["immigration"],"alien":["immigration"],"alien registration receipt card":["immigration"],"amnesty":["immigration"],"asylee":["immigration"],"asylum-seekers":["immigration"],"asylum":["immigration"],"battered immigrant":["immigration"],"beneficiary":["immigration"],"birthright citizenship":["immigration"],"brain drain":["immigration"],"cancellation":["immigration"],"removal":["immigration"],"child citizenship act":["immigration"],"citizen":["immigration"],"citizenship":["immigration"],"citizenship and immigration services":["immigration"],"conditional entrant":["immigration"],"consul":["immigration"],"customs and border protection":["immigration"],"deferred action status":["immigration"],"department of homeland security":["immigration"],"deportation":["immigration"],"derivative citizenship":["immigration"],"derivative naturalization":["immigration"],"diversity visa":["immigration"],"domestic migration":["immigration"],"domicile":["immigration"],"emigration":["immigration"],"employer sanctions":["immigration"],"employment authorization":["immigration"],"employment eligibility verification":["immigration"],"entry without inspection":["immigration"],"exclusion":["immigration"],"exclusion proceedings":["immigration"],"expedited removal":["immigration"],"family based visas":["immigration"],"federal register":["immigration"],"foreign born":["immigration"],"foreign students":["immigration"],"green card":["immigration"],"humanitarian parole":["immigration"],"illegal immigration":["immigration"],"immediate relatives":["immigration"],"immigration and customs enforcement":["immigration"],"immigration and nationality act of 1982":["immigration"],"immigration and naturalization service":["immigration"],"ins":["immigration"],"immigration court":["immigration"],"immigration judge":["immigration"],"immigration reform and control act of 1986":["immigration"],"in-migration":["immigration"],"inadmissible":["immigration"],"international migration":["immigration"],"intracompany transferee":["immigration"],"irca":["immigration"],"ina":["immigration"],"joint sponsor":["immigration"],"lawful permanent resident":["immigration"],"lawful temporary resident":["immigration"],"parolee":["immigration"],"labor certification":["immigration"],"lawful permanent resident (lpr)":["immigration"],"legal immigration family equity act":["immigration"],"legalization":["immigration"],"legalized aliens":["immigration"],"lottery admissions":["immigration"],"migrant":["immigration"],"migrant worker":["immigration"],"migration":["immigration"],"national":["immigration"],"national origins quota system":["immigration"],"native":["immigration"],"naturalized citizen":["immigration"],"naturalization application":["immigration"],"naturalization":["immigration"],"net migration":["immigration"],"nonimmigrant":["immigration"],"noncitizen":["immigration"],"nuclear family":["immigration"],"permanent resident":["immigration"],"permanent resident card":["immigration"],"petition":["immigration"],"out-migration":["immigration"],"principal beneficiary":["immigration"],"public charge":["immigration"],"qualified alien":["immigration"],"refugee":["immigration"],"refugee authorized admissions":["immigration"],"remittances":["immigration"],"resident alien":["immigration"],"removal hearing":["immigration"],"removal proceedings":["immigration"],"safe haven":["immigration"],"special agricultural workers (saw)":["immigration"],"self-petition":["immigration"],"sponsor":["immigration"],"suspension of deportation":["immigration"],"temporary protected status":["immigration"],"temporary resident":["immigration"],"tourists":["immigration"],"trafficking":["immigration"],"undocumented immigrant":["immigration"],"us citizen":["immigration"],"us customs and borders protection":["immigration"],"visa":["immigration"],"visa lottery":["immigration"],"waiver":["immigration"],"work-authorization":["immigration"],"h1b1":["immigration"],"acquired citizenship":["immigration"],"anchor babies":["immigration"],"voluntary departure":["immigration"],"absolute speed limit violation":["traffic violations"],"appeal":["traffic violations"],"basic speeding violation":["traffic violations"],"citation":["traffic violations"],"dash cam":["traffic violations"],"defendant":["traffic violations"],"dismissal":["traffic violations"],"dui":["traffic violations"],"dwi":["traffic violations"],"moving violation":["traffic violations"],"non-moving violation":["traffic violations"],"points":["traffic violations"],"reckless driving":["traffic violations"],"red light violation":["traffic violations"],"speeding violation":["traffic violations"],"strict liability offenses":["traffic violations"],"traffic":["traffic violations"],"traffic camera":["traffic violations"],"traffic ticket":["traffic violations"],"traffic violation":["traffic violations"],"crash":["traffic violations"],"car":["traffic violations"],"vehicle":["traffic violations"],"accident":["traffic violations"],"damage":["traffic violations"],"signaling":["traffic violations"],"acid attack":["acid attack"],"acid":["acid attack"],"burn":["acid attack"],"burning":["acid attack"],"thrown acid":["acid attack"],"acid thrown":["acid attack"],"burnt":["acid attack"],"burnt skin":["acid attack"],"corrosive substance":["acid attack"],"corrosive":["acid attack"],"disfigure":["acid attack"],"damaging skin tissue":["acid attack"],"damage skin tissue":["acid attack"],"damaged skin tissue":["acid attack"],"scarred":["acid attack"],"scars":["acid attack"],"burned":["acid attack"]};
     
-    /*
-      TODO: fill values
-    let watsonUsername = 'b738332b-adb1-4bec-b973-c92ff9a8b819';
-    let watsonPassword = 'U4IBVEHHCVJY';
-    let workspaceId = 'd2d9a060-dc7b-4384-95be-27a34af6b4cc';
-    let senderName = 'PubNub Bot';
-    */
+    const websiteDictionary = {
+	"traffic violations": [ "Department of Motor Vehicles - https://dmv.ny.gov/brochure/traffic-violations-bureau", "Traffic Tickets Blog - http://nytrafficticket.com/how-to-get-a-speeding-ticket-dismissed/", "New York Courts - https://www.nycourts.gov/courts/6jd/tompkins/ithaca/webpageResolveTrafficTicket.shtml"],
+	"immigration": [ "American Civic Association - http://www.americancivic.com", "New York Immigrations Coalition - http://www.thenyic.org/"],
+	"domestic violence": [ "Center Against Domestic Violence - http://www.cadvny.org/"],
+	"acid attack": [ "Acid Survivors Trust International - http://www.acidviolence.org/"]};
+	
+	const lawyerDictionary = {
+	"traffic violations": "Weiss & Associates, PC - 440 Park Ave S - (212) 683-7373",
+	"immigration": "Gottfried & Gottfried - 112 E 42nd St - (347) 504-7538",
+	"domestic violence": "Scott Gorman - 201-468-6285" 
+	};
     
     let watsonUsername = '312020c9-bdb7-46bd-b3d8-c33d0089472a';
     let watsonPassword = 'lLYdgsdlmTwZ';
@@ -32,75 +36,138 @@ export default (request) => {
     // bot auth
     let apiAuth = 'Basic ' + base64Encoded;
     
-    let payload = {
-      "text": request.message.text,
-      "features": {
-        "entities": {
-          "emotion": true,
-          "sentiment": true,
-          "limit": 2
-        },
-        "keywords": {
-          "emotion": true,
-          "sentiment": true,
-          "limit": 2
-        }
-      }
-    };
+    let TEXT = request.message.text;
     
-    let queryParams = {
-        version
-    };
-
-    let httpOptions = {
-        as: 'json',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: apiAuth
-        },
-        body: payload,
-        method: 'post'
-    };
-
-    let url = apiUrl + '?' + query.stringify(queryParams);
-
-    return xhr.fetch(url, httpOptions)
-        .then(response => {
-            return response.json()
-              .then(parsedResponse => {
-                  request.message.sender = senderName;
-
-                  if (parsedResponse.keywords && parsedResponse.keywords.length > 0) {
-                      
-                      let keywords = [];
-                      let outputTopics = [];
-                      
-                      parsedResponse.keywords.forEach(function(e) {
-                          
-                          //e.text contains keywords relevant to our topic
-                          let currentKeyword = e.text;
-                          
-                          keywords.unshift(currentKeyword);
-                          
-                          if (dictionary[currentKeyword])
-                              outputTopics = dictionary[currentKeyword].concat(outputTopics);
-                      })
-                      
-                      request.message.text = keywords.join(", ");
-                      request.message.outputTopics = outputTopics.join(", ");
-                  } else {
-                      request.message.text = "unknown topic"
+    if (TEXT.startsWith("http")) {
+        
+        const http_options = {
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer C79xcCZJeGhxJiFFi8nPQTHDpNOsCd",
+                "Content-Type": "application/json"
+             },
+            "body": JSON.stringify({
+              "inputs": [
+                {
+                  "data": {
+                    "image": {
+                      "url": TEXT
+                    }
                   }
+                }
+              ]
+            })
+        };
+        
+        const url = "https://api.clarifai.com/v2/models/Law/outputs";
 
-                  return request.ok();
+        return xhr.fetch(url, http_options).then((x) => {
+            
+            var splitString = JSON.stringify(x)
 
-              })
-              .catch(err => {
-                  console.error('error during parsing', err);
-              });
-        })
-        .catch(err => {
-            console.error('error during XHR', err);
-        });
+            var x1 = splitString.indexOf("acidattack");
+            var y = splitString.indexOf("dometicviolence");
+            var z = splitString.indexOf("no");
+            
+            
+            if (x1 < y && x1 < z) {
+                request.message.text = "acid attack"
+            }
+            else if(y < x1 && y < z) {
+                request.message.text = "domestic violence"
+            }
+            else
+            {
+                request.message.text = "Unknown Image"
+            }
+                
+            return request.ok();
+        });   
+    
+    } else {
+        
+        let payload = {
+          "text": TEXT,
+          "features": {
+            "entities": {
+              "emotion": true,
+              "sentiment": true,
+              "limit": 2
+            },
+            "keywords": {
+              "emotion": true,
+              "sentiment": true,
+              "limit": 2
+            }
+          }
+        };
+        
+        let queryParams = {
+            version
+        };
+    
+        let httpOptions = {
+            as: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: apiAuth
+            },
+            body: payload,
+            method: 'post'
+        };
+    
+        let url = apiUrl + '?' + query.stringify(queryParams);
+    
+        return xhr.fetch(url, httpOptions)
+            .then(response => {
+                return response.json()
+                  .then(parsedResponse => {
+                      request.message.sender = senderName;
+    
+                      if (parsedResponse.keywords && parsedResponse.keywords.length > 0) {
+                          
+                          let keywords = [];
+                          let outputTopics = [];
+                          
+                          parsedResponse.keywords.forEach(function(e) {
+                              
+                              //e.text contains keywords relevant to our topic
+                              let currentKeyword = e.text;
+                              
+                              keywords.unshift(currentKeyword);
+                              
+                              if (dictionary[currentKeyword])
+                                  outputTopics = dictionary[currentKeyword].concat(outputTopics);
+                          });
+                          
+                          let relevantWebsites = {};
+							let relevantLawyers = {};
+							
+						  outputTopics.forEach(function(topic) {
+							relevantWebsites[topic] = websiteDictionary[topic];
+							relevantLawyers[topic] = lawyerDictionary[topic];
+						  });
+						  
+						  request.message.resources = 
+								{"websites": relevantWebsites,
+									"lawyers": relevantLawyers};
+                          
+                          request.message.text = keywords.join(", ");
+                          request.message.outputTopics = outputTopics.join(", ");
+                      } else {
+                          request.message.text = "unknown topic"
+                      }
+    
+                      return request.ok();
+    
+                  })
+                  .catch(err => {
+                      console.error('error during parsing', err);
+                  });
+            })
+            .catch(err => {
+                console.error('error during XHR', err);
+            });
+    }
 }

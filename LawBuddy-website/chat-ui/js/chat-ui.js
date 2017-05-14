@@ -12,12 +12,33 @@ pubnub.addListener({
 	  
 	  var message = "";
 	  if (obj.message.outputTopics && obj.message.outputTopics !== "") {
-		 message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
+		message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
 	  } else {
-		 message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
+		message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
 	  }
 	  
-	  appendBotMessage(message);
+	appendBotMessage(message);
+
+	  var websiteStrings = "";
+	  var lawyerStrings = "";
+	  
+	  for (var website in obj.message.resources.websites) {
+		  websiteString = website + " - " + obj.message.resources.websites[website][0];
+	  }
+	  
+	  for (var lawyer in obj.message.resources.lawyers) {
+		  lawyerStrings = lawyer + " - " + obj.message.resources.lawyers[lawyer];
+	  }
+	  
+	  if (obj.message.resources) {
+		message = "I found a relevant website to the topics here: " + websiteString;
+
+		appendBotMessage(message);		
+		
+		message = "If you wish you contact lawyers in this domain, I suggest: " + lawyerStrings;
+		
+		appendBotMessage(message);	
+	  }
   }});
 
 pubnub.subscribe({channels:[channel]});
