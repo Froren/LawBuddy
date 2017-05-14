@@ -14,3 +14,13 @@ $('.left .person').mousedown(function(){
         $('.chat[data-chat = '+findChat+']').addClass('active-chat');
     }
 });
+// PUBLISHES THE USER'S INPUT IN THE CHAT BOX
+  function publishUserMsg() {
+    var userMessageInput = $('#userInput').val();
+    var chatBox = document.getElementById('chat');
+    var userBubble = document.createElement('div');
+    userBubble.className += "bubble me";
+    var userBubbleText = document.createTextNode(userMessageInput);
+    userBubble.appendChild(userBubbleText);
+    chatBox.appendChild(userBubble);
+  }
