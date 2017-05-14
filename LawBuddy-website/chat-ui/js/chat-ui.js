@@ -9,15 +9,15 @@ const channel = 'pubnub-law-analysis1';
 
 pubnub.addListener({
   message: function(obj) {
-	  
-	  var message = "";
-	  if (obj.message.outputTopics !== "") {
-		 message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
-	  } else {
-		 message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
-	  }
-	  
-	  appendMessage(message);
+      
+      var message = "";
+      if (obj.message.outputTopics !== "") {
+         message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
+      } else {
+         message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
+      }
+      
+      appendBotMessage(message);
   }});
 
 pubnub.subscribe({channels:[channel]});
@@ -36,19 +36,28 @@ $('.left .person').mousedown(function(){
     }
 });
 
-	function appendMessage(message) {
-		var chatBox = document.getElementById('chat');
-		var userBubble = document.createElement('div');
-		userBubble.className += "bubble me";
-		var userBubbleText = document.createTextNode(message);
-		userBubble.appendChild(userBubbleText);
-		chatBox.appendChild(userBubble);
-	}
-	
+    function appendMessage(message) {
+        var chatBox = document.getElementById('chat');
+        var userBubble = document.createElement('div');
+        userBubble.className += "bubble me";
+        var userBubbleText = document.createTextNode(message);
+        userBubble.appendChild(userBubbleText);
+        chatBox.appendChild(userBubble);
+    }
+    
+    function appendBotMessage(message) {
+        var chatBox = document.getElementById('chat');
+        var botBubble = document.createElement('div');
+        botBubble.className += "bubble you";
+        var botBubbleText = document.createTextNode(message);
+        botBubble.appendChild(botBubbleText);
+        chatBox.appendChild(botBubble);
+    }    
+    
 // PUBLISHES THE USER'S INPUT IN THE CHAT BOX
   function publishUserMsg() {
     var userMessageInput = $('#userInput').val();
-	appendMessage(userMessageInput);
+    appendMessage(userMessageInput);
     $('#userInput').val('');
 // PUBLISHES MESSAGE TO PUBNUB
     pubnub.publish({channel: channel, message : {text: userMessageInput}});
