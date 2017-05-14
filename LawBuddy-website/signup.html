@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>LawBuddy Log In</title>
+	<title>LawBuddy Sign Up</title>
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
@@ -19,8 +19,16 @@
 	<div class="container">
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
-				<h2>Log In</h2>
+				<h2>Sign Up</h2>
 			</div>
+			<label for="fullname">Full Name</label>
+			<br/>
+			<input type="text" id="fullname">
+			<br/>
+			<label for="email">Email</label>
+			<br/>
+			<input type="text" id="email">
+			<br/>
 			<label for="username">Username</label>
 			<br/>
 			<input type="text" id="username">
@@ -40,6 +48,18 @@
 	$(document).ready(function () {
     	$('#logo').addClass('animated fadeInDown');
     	$("input:text:visible:first").focus();
+	});
+	$('#email').focus(function() {
+		$('label[for="email"]').addClass('selected');
+	});
+	$('#email').blur(function() {
+		$('label[for="email"]').removeClass('selected');
+	});
+	$('#fullname').focus(function() {
+		$('label[for="fullname"]').addClass('selected');
+	});
+	$('#fullname').blur(function() {
+		$('label[for="fullname"]').removeClass('selected');
 	});
 	$('#username').focus(function() {
 		$('label[for="username"]').addClass('selected');
