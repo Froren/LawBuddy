@@ -1,0 +1,22 @@
+Enter Chat and press enter
+<div><input id=input placeholder=you-chat-here /></div>
+
+Chat Output
+<div id=box></div>
+
+<script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.0.11.min.js></script>
+<script>(function(){
+      var pubnub = new PubNub({ publishKey : 'pub-c-793237f1-ee68-427e-874b-1a4363e8862b', subscribeKey : 'sub-c-9c152790-3825-11e7-b611-0619f8945a4f' });
+      function $(id) { return document.getElementById(id); }
+      var box = $('box'), input = $('input'), channel = 'pubnub-law-analysis1';
+      pubnub.addListener({
+          message: function(obj) {
+              box.innerHTML = (''+obj.message.sender+' '+obj.message.text).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML
+          }});
+      pubnub.subscribe({channels:[channel]});
+      input.addEventListener('keyup', function(e) {
+          if ((e.keyCode || e.charCode) === 13) {
+            pubnub.publish({channel : channel,message : {text: input.value}});
+        }
+      });
+})();</script>

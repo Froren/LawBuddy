@@ -1,0 +1,104 @@
+function process(request) {
+    const base64Codec = require('codec/base64');
+    const query = require('codec/query_string');
+    const console = require('console');
+    const xhr = require('xhr');
+    const pubnub = require('pubnub');
+
+    /*
+      TODO: fill values
+    let watsonUsername = 'b738332b-adb1-4bec-b973-c92ff9a8b819';
+    let watsonPassword = 'U4IBVEHHCVJY';
+    let workspaceId = 'd2d9a060-dc7b-4384-95be-27a34af6b4cc';
+    let senderName = 'PubNub Bot';
+    */
+    
+    let watsonUsername = '312020c9-bdb7-46bd-b3d8-c33d0089472a';
+    let watsonPassword = 'lLYdgsdlmTwZ';
+    let senderName = 'PubNub Bot';
+    /*
+      TODO: end fill values
+    */
+
+    let version = '2017-02-27';
+
+    // bot api url
+    let apiUrl = 'https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze';
+
+    let base64Encoded = base64Codec.btoa(watsonUsername + ':' + watsonPassword);
+
+    // bot auth
+    let apiAuth = 'Basic ' + base64Encoded;
+    
+    let payload = {
+      "text": request.message.text,
+      "features": {
+        "entities": {
+          "emotion": true,
+          "sentiment": true,
+          "limit": 2
+        },
+        "keywords": {
+          "emotion": true,
+          "sentiment": true,
+          "limit": 2
+        }
+      }
+    };
+    
+    let queryParams = {
+        version
+    };
+
+    let httpOptions = {
+        as: 'json',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: apiAuth
+        },
+        body: payload,
+        method: 'post'
+    };
+
+    let url = apiUrl + '?' + query.stringify(queryParams);
+
+    return xhr.fetch(url, httpOptions)
+        .then(response => {
+            return response.json()
+              .then(parsedResponse => {
+                  request.message.sender = senderName;
+
+                  if (parsedResponse.keywords.length > 0) {
+                      
+                      let outputText = "";
+                      
+                      parsedResponse.keywords.forEach(function(e) {
+                          outputText += e.text + " ";
+                      })
+                      
+                      pubnub.publish({
+                          channel: request.message.channel,
+                          message: outputText
+                      });
+                  } else {
+                      request.message.text =
+                          "Sorry I didn't understand that. " +
+                          'Please check what I can do.';
+                      pubnub.publish({
+                          channel: request.message.channel,
+                          message: "what up bro"
+                      });
+                  }
+
+                  return request;
+
+              })
+              .catch(err => {
+                  console.error('error during parsing', err);
+              });
+        })
+        .catch(err => {
+            console.error('error during XHR', err);
+        });
+}
