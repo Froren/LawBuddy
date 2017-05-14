@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Get started with graphics - 4.3</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.3/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/Graphic",
+      "esri/geometry/Point",
+      "esri/geometry/Polyline",
+      "esri/geometry/Polygon",
+      "esri/symbols/SimpleMarkerSymbol",
+      "esri/symbols/SimpleLineSymbol",
+      "esri/symbols/SimpleFillSymbol",
+      "dojo/domReady!"
+    ], function(
+      Map, MapView,
+      Graphic, Point, Polyline, Polygon,
+      SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol
+    ) {
+
+      var map = new Map({
+        basemap: "hybrid"
+      });
+
+      var view = new MapView({
+        center: [-80, 35],
+        container: "viewDiv",
+        map: map,
+        zoom: 3
+      });
+
+      /**********************
+       * Create a point graphic
+       **********************/
+
+      // First create a point geometry (this is the location of the Titanic)
+      var point = new Point({
+        longitude: -49.97,
+        latitude: 41.73
+      });
+
+      // Create a symbol for drawing the point
+      var markerSymbol = new SimpleMarkerSymbol({
+        color: [226, 119, 40],
+        outline: { // autocasts as new SimpleLineSymbol()
+          color: [255, 255, 255],
+          width: 2
+        }
+      });
+
+      // Create a graphic and add the geometry and symbol to it
+      var pointGraphic = new Graphic({
+        geometry: point,
+        symbol: markerSymbol
+      });
+
+      // Add the graphics to the view's graphics layer
+      view.graphics.add(pointGraphic);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
