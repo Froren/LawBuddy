@@ -9,15 +9,15 @@ const channel = 'pubnub-law-analysis1';
 
 pubnub.addListener({
   message: function(obj) {
-      
-      var message = "";
-      if (obj.message.outputTopics !== "") {
-         message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
-      } else {
-         message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
-      }
-      
-      appendBotMessage(message);
+	  
+	  var message = "";
+	  if (obj.message.outputTopics && obj.message.outputTopics !== "") {
+		 message = "Let me search for some of the related topics I found: " + obj.message.outputTopics;
+	  } else {
+		 message = "Sorry, I couldn't find a relevant topic to help you with. Please try describing your issue differently.";
+	  }
+	  
+	  appendBotMessage(message);
   }});
 
 pubnub.subscribe({channels:[channel]});
