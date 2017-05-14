@@ -11,7 +11,9 @@ Chat Output
       var box = $('box'), input = $('input'), channel = 'pubnub-law-analysis1';
       pubnub.addListener({
           message: function(obj) {
-              box.innerHTML = (''+obj.message.sender+' '+obj.message.text).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML
+              box.innerHTML = (''+ obj.message.sender +' ' + obj.message.text).replace( /[<>]/g, '' ) + '<br>'
+                              + (' Related topics: ' + obj.message.outputTopics).replace( /[<>]/g, '' ) + '<br>'
+                              + box.innerHTML
           }});
       pubnub.subscribe({channels:[channel]});
       input.addEventListener('keyup', function(e) {
