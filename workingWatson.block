@@ -73,20 +73,6 @@ export default (request) => {
 
                   if (parsedResponse.keywords.length > 0) {
                       
-<<<<<<< 96c5a955af709d589fc4000d24746564e8e388f4
-                      let outputText = [];
-                      
-                      parsedResponse.keywords.forEach(function(e) {
-                          outputText.unshift(e.text);
-                      })
-                      
-                      request.message.text = outputText.join(", ");
-                      
-                  } else {
-                      request.message.text =
-                          "Sorry I didn't understand that. " +
-                          'Please check what I can do.';
-=======
                       let keywords = [];
                       let outputTopics = [];
                       
@@ -105,7 +91,6 @@ export default (request) => {
                       request.message.outputTopics = outputTopics.join(", ");
                   } else {
                       request.message.text = "unknown topic"
->>>>>>> added topics to output
                   }
 
                   return request.ok();
